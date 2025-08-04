@@ -63,6 +63,26 @@ def names(stdscr):
     
     return {"player1": nombre1, "player2": nombre2}
     
+def start_game(stdscr):
+    stdscr.clear()
+    stdscr.addstr(0, 0, "¡Bienvenido al juego de Piedra, Papel o Tijera!")
+
+    curses.echo()
+    stdscr.clear()
+    stdscr.addstr(0, 0, "¿Cuántas rondas quieres jugar? (1-5)")
+    stdscr.refresh()
+    n_rounds = stdscr.getstr(1, 0, 20).decode('utf-8')
+    return n_rounds
+
+
+def show_winner_round(stdscr, games_score, winner, names):
+    stdscr.clear()
+    stdscr.addstr(0, 0, f"¡El ganador de la ronda es {names[winner]}!")
+    stdscr.addstr(1, 0, f"Marcador actual:")
+    stdscr.addstr(2, 0, f"{names['player1']}: {games_score[0]}")
+    stdscr.addstr(3, 0, f"{names['player2']}: {games_score[1]}")
+    stdscr.refresh()
+    stdscr.getch()
 
 
 def versus(stdscr, names):
@@ -83,4 +103,3 @@ def versus(stdscr, names):
         "player1": player1,
         "player2": player2
     }
-
